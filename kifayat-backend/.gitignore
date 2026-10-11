@@ -1,0 +1,10 @@
+node_modules/
+dist/
+# Never commit real credentials.
+.env
+.env.local
+.env.*.local
+!.env.example
+firebase-service-account.json
+logs/
+backups/

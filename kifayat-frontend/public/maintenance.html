@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kifayat is down for maintenance</title>
+<meta name="description" content="kifayat.co is down for maintenance. Shopping is paused until the store is back.">
+<meta name="theme-color" content="#f6f0e2">
+<meta name="color-scheme" content="light">
+<!--
+  Deploy note: serve this page with HTTP status 503 and a Retry-After header,
+  so search engines treat the downtime as temporary instead of as your new content.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
+<script>document.documentElement.className="js"</script>
+<style>
+:root{--cream:#f6f0e2;--ink:#2b2218;--brass:#b08d3f;--brass-d:#7a5c1e;--pad:clamp(34px,4.4vw,60px)}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{
+  display:flex;flex-direction:column;justify-content:space-between;
+  height:100dvh;overflow:hidden;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  background:radial-gradient(120% 90% at 50% 38%,#fbf8ef 0%,#f6f0e2 62%,#ece3cd 100%);
+  color:var(--ink);
+  font:500 clamp(14px,.5vw + 12px,17px)/1.5 "Playfair Display","Didot","Bodoni MT",Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0;touch-action:none}
+.frame{position:fixed;inset:14px;z-index:1;pointer-events:none;border:1px solid var(--brass)}
+.frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(176,141,63,.45)}
+.frame i{position:absolute;width:9px;height:9px;background:var(--cream);border:1px solid var(--brass);transform:rotate(45deg)}
+.frame i:nth-child(1){top:-5px;left:-5px}
+.frame i:nth-child(2){top:-5px;right:-5px}
+.frame i:nth-child(3){bottom:-5px;left:-5px}
+.frame i:nth-child(4){bottom:-5px;right:-5px}
+header,footer{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:var(--pad)}
+header{gap:10px;padding-bottom:0}
+footer{gap:16px;padding-top:0}
+.seal{width:54px;height:54px;color:var(--brass)}
+.status{display:flex;align-items:center;gap:.7em;font-style:italic;color:var(--brass-d)}
+.dot{flex:none;width:.5em;height:.5em;background:var(--brass);transform:rotate(45deg)}
+.clock{color:var(--brass-d);font-variant-numeric:tabular-nums}
+.rule{display:flex;align-items:center;gap:14px;width:min(420px,72%)}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--brass))}
+.rule::after{background:linear-gradient(270deg,transparent,var(--brass))}
+.rule i{flex:none;width:7px;height:7px;background:var(--brass);transform:rotate(45deg)}
+.msg{max-width:28ch;font-style:italic;font-size:clamp(20px,1.6vw + 12px,32px);line-height:1.25}
+.aside{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 22px;color:var(--brass-d);font-size:.92em}
+.hint{font-style:italic}
+.hint:empty{display:none}
+.contact{color:var(--ink);text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:1px;text-underline-offset:.28em}
+.contact:focus-visible{outline:2px solid var(--brass-d);outline-offset:4px;border-radius:2px}
+.word{position:relative;z-index:1;color:var(--brass);font-weight:800;font-size:clamp(44px,13vw,170px);line-height:1;letter-spacing:-0.02em;text-align:center}
+.word span{color:var(--brass-d)}
+.js .word{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (max-width:640px){.aside{flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<header>
+  <svg class="seal" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width=".6"/>
+    <text x="32" y="43" text-anchor="middle" font-size="30" font-style="italic" font-weight="600" fill="currentColor" font-family="Playfair Display,Georgia,serif">K</text>
+  </svg>
+  <p class="status"><span class="dot"></span>Offline</p>
+  <p class="clock" id="clock" aria-live="off" hidden></p>
+</header>
+
+<h1 class="word">kifayat<span>.co</span></h1>
+
+<footer>
+  <div class="rule" aria-hidden="true"><i></i></div>
+  <p class="msg">The store is down for maintenance.<br>Shopping is paused until it's back.</p>
+  <div class="aside">
+    <a class="contact" id="contact" hidden></a>
+    <p class="hint" id="hint"></p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+/* ── Edit these ─────────────────────────────────────────────── */
+const CONFIG={
+  backAt:"",        // e.g. "2026-10-20T09:00:00+05:00"  → shows a countdown
+  offlineSince:"",  // e.g. "2026-10-06T18:00:00+05:00"  → shows time offline (used when backAt is empty)
+  contact:""        // e.g. "you@example.com"            → shows an email link
+};
+/* ──────────────────────────────────────────────────────────── */
+
+const COL=["#a67c2e","#b8923f","#c9a24b","#d8b45e","#7a5c1e","#8c6a22","#6b4f17"],HI="#d99a1c",FAM='"Playfair Display","Didot","Bodoni MT",Georgia,serif';
+const $=id=>document.getElementById(id);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const touch=matchMedia("(hover: none)").matches;
+
+/* status line */
+const clock=$("clock"),contact=$("contact"),hint=$("hint");
+const at=v=>{const t=Date.parse(v);return isNaN(t)?null:t};
+const backAt=at(CONFIG.backAt),since=at(CONFIG.offlineSince);
+const p2=n=>String(n).padStart(2,"0");
+const span=ms=>{
+  const s=Math.max(0,Math.floor(ms/1000)),d=Math.floor(s/86400);
+  return(d?d+"d ":"")+p2(Math.floor(s%86400/3600))+"h "+p2(Math.floor(s%3600/60))+"m "+p2(s%60)+"s";
+};
+function tick(){
+  const n=Date.now();
+  clock.textContent=backAt?(backAt>n?"Back in "+span(backAt-n):"Back any moment now"):"Offline for "+span(n-since);
+}
+if(backAt||since){clock.hidden=false;tick();setInterval(tick,1000)}
+if(CONFIG.contact){contact.hidden=false;contact.href="mailto:"+CONFIG.contact;contact.textContent=CONFIG.contact}
+if(!reduce)hint.textContent=touch?"Touch the letters. Tap to scatter them.":"Move your cursor through the letters. Click to scatter them.";
+
+/* particle wordmark */
+const cvs=$("stage"),ctx=cvs.getContext("2d");
+let W,H,dpr,S,P=[],t0=0,glow=0,last=0;
+const ptr={x:-1e4,y:-1e4,on:false};
+
+function build(intro){
+  W=innerWidth;H=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
+  cvs.width=W*dpr;cvs.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  const narrow=W/H<.85,lines=narrow?["kifayat",".co"]:["kifayat.co"];
+  const off=document.createElement("canvas");off.width=W;off.height=H;
+  const o=off.getContext("2d",{willReadFrequently:true});
+  o.font="800 100px "+FAM;
+  const size=Math.min(W*.9/Math.max(...lines.map(l=>o.measureText(l).width))*100,H*.5/lines.length/.9);
+  o.font="800 "+size+"px "+FAM;
+  const lh=size*.9,base=H*.47-lines.length*lh/2+size*.78;
+  if(narrow)lines.forEach((l,i)=>{o.fillStyle=i?"#f00":"#000";o.fillText(l,(W-o.measureText(l).width)/2,base+i*lh)});
+  else{
+    const a=o.measureText("kifayat").width,b=o.measureText(".co").width,x=(W-a-b)/2;
+    o.fillStyle="#000";o.fillText("kifayat",x,base);o.fillStyle="#f00";o.fillText(".co",x+a,base);
+  }
+  const px=o.getImageData(0,0,W,H).data,cap=W<700?3400:6000;
+  let gap=Math.max(3,Math.round(size/56));
+  for(;;){
+    P=[];
+    for(let y=gap/2;y<H;y+=gap)for(let x=gap/2;x<W;x+=gap){
+      const i=((y|0)*W+(x|0))*4;
+      if(px[i+3]>100){
+        const ox=x+(Math.random()-.5)*gap*.5,oy=y+(Math.random()-.5)*gap*.5;
+        P.push({
+          ox,oy,c:px[i]>128?4+(Math.random()*3|0):(Math.random()*4|0),
+          x:intro?Math.random()*W:ox,y:intro?Math.random()*H:oy,vx:0,vy:0,
+          k:.025+Math.random()*.05,ph:Math.random()*6.283,
+          d:intro?250+ox/W*900+Math.random()*500:0,
+          dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5
+        });
+      }
+    }
+    if(P.length<=cap)break;
+    gap++;
+  }
+  S=Math.max(1.5,gap*.56);
+  P.sort((a,b)=>a.c-b.c);
+  t0=intro?performance.now():-1e9;
+}
+
+function step(now,f){
+  const el=now-t0,fr=Math.pow(.85,f),R=130,R2=R*R;
+  glow+=((ptr.on?1:0)-glow)*Math.min(1,.12*f);
+  for(const p of P){
+    if(el<p.d){p.x+=p.dx*f;p.y+=p.dy*f}
+    else{
+      p.vx+=(p.ox+Math.sin(now*.0012+p.ph)*.9-p.x)*p.k*f;
+      p.vy+=(p.oy+Math.cos(now*.001+p.ph)*.9-p.y)*p.k*f;
+    }
+  }
+  if(ptr.on){
+    const dx=p.x-ptr.x,dy=p.y-ptr.y,d2=dx*dx+dy*dy;
+    if(d2<R2){
+      const d=Math.sqrt(d2)||1,t=1-d/R,a=t*t*2.4*f;
+      p.vx+=(dx/d)*a-(dy/d)*a*.6;
+      p.vy+=(dy/d)*a+(dx/d)*a*.6;
+    }
+  }
+  p.vx*=fr;p.vy*=fr;p.x+=p.vx*f;p.y+=p.vy*f;
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  if(glow>.01){
+    const r=210,g=ctx.createRadialGradient(ptr.x,ptr.y,0,ptr.x,ptr.y,r);
+    g.addColorStop(0,"rgba(201,162,75,"+(.26*glow)+")");
+    g.addColorStop(1,"rgba(201,162,75,0)");
+    ctx.fillStyle=g;ctx.fillRect(ptr.x-r,ptr.y-r,r*2,r*2);
+  }
+  const ps=COL.map(()=>new Path2D()),hp=new Path2D();
+  for(const p of P){
+    const sp=Math.abs(p.vx)+Math.abs(p.vy),r=(S+Math.min(sp*.3,2.4))/2,q=sp>2.5?hp:ps[p.c];
+    q.moveTo(p.x+r,p.y);q.arc(p.x,p.y,r,0,6.2832);
+  }
+  COL.forEach((c,i)=>{ctx.fillStyle=c;ctx.fill(ps[i])});
+  ctx.fillStyle=HI;ctx.fill(hp);
+}
+function burst(x,y){
+  const R=340;
+  for(const p of P){
+    const dx=p.x-x,dy=p.y-y,d=Math.hypot(dx,dy)||1;
+    if(d<R){
+      const a=Math.pow(1-d/R,1.5)*34;
+      p.vx+=dx/d*a+(Math.random()-.5)*3;
+      p.vy+=dy/d*a+(Math.random()-.5)*3;
+    }
+  }
+}
+
+if(!reduce){
+  const set=e=>{ptr.x=e.clientX;ptr.y=e.clientY;ptr.on=true};
+  addEventListener("pointermove",set);
+  addEventListener("pointerdown",e=>{set(e);burst(e.clientX,e.clientY)});
+  addEventListener("pointerup",e=>{if(e.pointerType!=="mouse")ptr.on=false});
+  addEventListener("pointercancel",()=>{ptr.on=false});
+  addEventListener("blur",()=>{ptr.on=false});
+  document.documentElement.addEventListener("pointerleave",()=>{ptr.on=false});
+}
+
+let rt;
+addEventListener("resize",()=>{
+  clearTimeout(rt);
+  rt=setTimeout(()=>{
+    if(innerWidth===W&&Math.abs(innerHeight-H)<80)return;
+    build(false);if(reduce)draw();
+  },160);
+});
+
+function frame(now){
+  const f=Math.min((now-last)/16.667||1,3);last=now;
+  step(now,f);draw();requestAnimationFrame(frame);
+}
+
+const fonts=document.fonts?document.fonts.load("800 100px "+FAM.split(",")[0]):Promise.resolve();
+Promise.race([fonts,new Promise(r=>setTimeout(r,1800))]).catch(()=>{}).then(()=>{
+  build(!reduce);
+  if(reduce)draw();else{last=performance.now();requestAnimationFrame(frame)}
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+- [Kifayat project setup](kifayat-setup.md) — monorepo with kifayat-backend (dev port 3001) and kifayat-frontend (Vite port 5000). NOTE: ports in that note are stale; trust kifayat-full-architecture.md.
+- [Kifayat backend audit](kifayat-backend-audit.md) — four gaps fixed vs the original spec; key: getShipmentEmails response format, phone field, Review.order field.
+- [Kifayat SEO system](kifayat-seo.md) — react-helmet-async + JSON-LD on all routes; split sitemap index; UIProduct null-coercion rules.
+- [Kifayat CSV lifecycle](kifayat-csv-lifecycle.md) — customer confirmation and admin finalization must share one idempotent PreOrder/MainOrderCSVData path.
+- [Kifayat full architecture](kifayat-full-architecture.md) — **READ FIRST** for any feature work. Verified Oct 2026: dev ports backend 3001 / frontend 5000; toggle-based availability (no quantity/no auto-delete wired); ShipmentRecord is the confirmed-order source of truth (OrderHistory gone); 31 models, 22 controllers, 21 route mounts; order lifecycle, auth/session, vouchers, socket events, frontend stores/route tree, and stale-docs list.
+- [Kifayat dynamic data](kifayat-dynamic-data-sync.md) — STALE: HHC/DynamicData/hhc-proxy no longer exist in the codebase. Kept only for history.
